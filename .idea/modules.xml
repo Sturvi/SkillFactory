@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Cheese/Cheese.iml" filepath="$PROJECT_DIR$/Cheese/Cheese.iml" />
       <module fileurl="file://$PROJECT_DIR$/Rocket Timer/Rocket Timer.iml" filepath="$PROJECT_DIR$/Rocket Timer/Rocket Timer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SkillFactory.iml" filepath="$PROJECT_DIR$/.idea/SkillFactory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Test/Test.iml" filepath="$PROJECT_DIR$/Test/Test.iml" />
     </modules>
   </component>
 </project>
