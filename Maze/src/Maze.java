@@ -3,10 +3,10 @@ import java.util.Scanner;
 public class Maze {
     private static Scanner scanner = new Scanner(System.in);
     public int[][] maze;
-    public int mazeStartWidth;
-    public int mazeStartHeight;
-    public int mazeEndWidth;
-    public int mazeEndHeight;
+    public int mazeStartX;
+    public int mazeStartY;
+    public int mazeEndX;
+    public int mazeEndY;
 
     public void getMaze() {
         System.out.println("Хотите ли вы ввести лабиринт в ручную, или сгенирировать случайный лабиринт?");
@@ -19,47 +19,57 @@ public class Maze {
             System.out.println("Введите N если хотите сгенерировать случайный лабиринт.");
             mazeStatus = scanner.nextLine();
         }
-        int mazeWidth = getMazeWidth();
-        int mazeHeight = getMazeHeight();
-        maze = new int[mazeWidth][mazeHeight];
+        int mazeX = getMazeWidth();
+        int mazeY = getMazeHeight();
+        maze = new int[mazeY][mazeX];
         if (mazeStatus.equals("Y")) {
-            maze = getMazeFromKeyboard(mazeWidth, mazeHeight);
+            maze = getMazeFromKeyboard(mazeX, mazeY);
             getMazeStartAndEndPoints(mazeStatus);
         } else {
-            getMazeStartAndEndPoints(mazeStatus);
-            MazeGenerator mazeGenerator = new MazeGenerator(maze, mazeStartWidth, mazeStartHeight, mazeEndWidth, mazeEndHeight);
+            MazeGenerator mazeGenerator = new MazeGenerator(maze);
             maze = mazeGenerator.getRandomMaze();
+            getMazeStartAndEndPoints(mazeStatus);
         }
+    }
+
+    public int [][] findingAnExitFromMaze() {
+        MazeExitWay mazeExitWay = new MazeExitWay(maze, mazeStartX, mazeStartY, mazeEndX, mazeEndY);
+        int[][] mazeExit = new int[maze.length][maze[0].length];
+        mazeExit = mazeExitWay.getMazeExitWay();
     }
 
     private void getMazeStartAndEndPoints(String mazeStatus) {
         if (mazeStatus.equals("Y")) {
             System.out.println("Введите координаты стартовой точки по оси X");
-            System.out.println("Можно вводить значения от 1 до " + maze.length);
-            mazeStartWidth = scanner.nextInt() - 1;
+            System.out.println("Можно вводить значения от 1 до " + maze[0].length);
+            mazeStartX = scanner.nextInt() - 1;
             System.out.println("Введите координаты стартовой точки по оси Y");
-            System.out.println("Можно вводить значения от 1 до " + maze[0].length);
-            mazeStartHeight = scanner.nextInt() - 1;
-            System.out.println("Введите координаты точки выхода из лабиринта по оси X");
             System.out.println("Можно вводить значения от 1 до " + maze.length);
-            mazeEndWidth = scanner.nextInt() - 1;
-            System.out.println("Введите координаты точки выхода из лабиринта по оси Y");
+            mazeStartY = scanner.nextInt() - 1;
+            System.out.println("Введите координаты точки выхода из лабиринта по оси X");
             System.out.println("Можно вводить значения от 1 до " + maze[0].length);
-            mazeEndHeight = scanner.nextInt() - 1;
+            mazeEndX = scanner.nextInt() - 1;
+            System.out.println("Введите координаты точки выхода из лабиринта по оси Y");
+            System.out.println("Можно вводить значения от 1 до " + maze.length);
+            mazeEndY = scanner.nextInt() - 1;
         } else {
-            mazeStartWidth = getRandom(maze.length);
-            mazeStartHeight = getRandom(maze[0].length);
-            mazeEndWidth = getRandom(maze.length);
-            mazeEndHeight = getRandom(maze[0].length);
+            do {
+                mazeStartX = getRandom(maze[0].length);
+                mazeStartY = getRandom(maze.length);
+            } while (maze[mazeStartY][mazeStartX] == 0);
+            do {
+                mazeEndX = getRandom(maze[0].length);
+                mazeEndY = getRandom(maze.length);
+            } while (maze[mazeEndY][mazeStartX] == 0);
         }
     }
 
     private int getRandom(int maxRandom) {
-        return (int) (Math.random()*maxRandom);
+        return (int) (Math.random() * maxRandom);
     }
 
     private static int[][] getMazeFromKeyboard(int mazeWidth, int mazeHeight) {
-        int[][] maze = new int[mazeWidth][mazeHeight];
+        int[][] maze = new int[mazeHeight][mazeWidth];
         System.out.println("Введите лабиринт (0 - стена, 1 - тунель):");
         for (int i = 0; i < mazeWidth; i++) {
             for (int j = 0; j < mazeHeight; j++) {

@@ -12,6 +12,8 @@ public class Main {
             }
             System.out.println("");
         }
+        int[][] mazeExit = new  int[maze.maze.length][maze.maze[0].length];
+        mazeExit=maze.findingAnExitFromMaze();
 
 
 
