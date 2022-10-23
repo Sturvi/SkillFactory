@@ -27,17 +27,38 @@ public class MazeExitWay {
     private void takeTheNextStep(int[][] maze2, int currentX, int currentY, int stepCounter) {
         maze2[currentY][currentX]=stepCounter;
         stepCounter++;
-        if (currentX==mazeEndX && currentY==mazeEndY) exitFound=true;
-        if (!exitFound && currentY>0 && maze[currentY-1][currentX]==1 && maze2[currentY-1][currentX]==0){
+        boolean exit =(maze2[mazeEndY][mazeEndX]<=stepCounter && maze2[mazeEndY][mazeEndX]>1);
+        if (!exit &&
+                currentY>0 &&
+                maze[currentY-1][currentX]==1 &&
+                (maze2[currentY-1][currentX]==0 || maze2[currentY-1][currentX]>maze2[currentY][currentX])){
+            stepCounter=maze2[currentY][currentX]+1;
             takeTheNextStep(maze2,currentX,currentY-1,stepCounter);
         }
-        if (!exitFound && currentX<maze[0].length-1 && maze[currentY][currentX+1]==1 && maze2[currentY][currentX+1]==0){
+        exit =(maze2[mazeEndY][mazeEndX]<=stepCounter && maze2[mazeEndY][mazeEndX]>1);
+
+        if (!exit &&
+                currentX<maze[0].length-1 &&
+                maze[currentY][currentX+1]==1 &&
+                (maze2[currentY][currentX+1]==0 || maze2[currentY][currentX+1]>maze2[currentY][currentX])){
+            stepCounter=maze2[currentY][currentX]+1;
             takeTheNextStep(maze2,currentX+1,currentY,stepCounter);
         }
-        if (!exitFound && currentY<maze.length-1 && maze[currentY+1][currentX]==1 && maze2[currentY+1][currentX]==0){
+         exit =(maze2[mazeEndY][mazeEndX]<=stepCounter && maze2[mazeEndY][mazeEndX]>1);
+        if (!exit &&
+                currentY<maze.length-1 &&
+                maze[currentY+1][currentX]==1 &&
+                (maze2[currentY+1][currentX]==0 || maze2[currentY+1][currentX]>maze2[currentY][currentX])){
+            stepCounter=maze2[currentY][currentX]+1;
+
             takeTheNextStep(maze2,currentX,currentY+1,stepCounter);
         }
-        if (!exitFound && currentX>0 && maze[currentY][currentX-1]==1 && maze2[currentY][currentX-1]==0){
+         exit =(maze2[mazeEndY][mazeEndX]<=stepCounter && maze2[mazeEndY][mazeEndX]>1);
+        if (!exit &&
+                currentX>0 &&
+                maze[currentY][currentX-1]==1 &&
+                (maze2[currentY][currentX-1]==0 || maze2[currentY][currentX-1]>maze2[currentY][currentX])){
+            stepCounter=maze2[currentY][currentX]+1;
             takeTheNextStep(maze2,currentX-1,currentY,stepCounter);
         }
     }

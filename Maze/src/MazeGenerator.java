@@ -29,7 +29,7 @@ public class MazeGenerator {
             for (int j = 0; j < maze[0].length; j++) {
                 if (maze[i][j] == 0) {
                     int random = (int)(Math.random() * 10);
-                    if (random>6)
+                    if (random>7)
                         maze[i][j] =1;
                 }
             }
