@@ -36,6 +36,39 @@ public class Maze {
         MazeExitWay mazeExitWay = new MazeExitWay(maze, mazeStartX, mazeStartY, mazeEndX, mazeEndY);
         int[][] mazeExit = new int[maze.length][maze[0].length];
         mazeExit = mazeExitWay.getMazeExitWay();
+        return mazeExit;
+    }
+
+    public int[][] onlyMazeExitWay(){
+        int[][] mazeWithOnlyExitWay = new int[maze.length][maze[0].length];
+        int[][] mazeWithAllSteps = new int[maze.length][maze[0].length];
+        mazeWithAllSteps=findingAnExitFromMaze();
+        int currentStep=mazeWithAllSteps[mazeEndY][mazeEndX];
+        int currentX=mazeEndX, currentY=mazeEndY;
+        while (currentStep>1){
+            mazeWithOnlyExitWay[currentY][currentX] = currentStep;
+            if (currentY>0 && mazeWithAllSteps[currentY-1][currentX]==currentStep-1) {
+                currentY--;
+                currentStep--;
+                continue;
+            }
+            if (currentX>0 && mazeWithAllSteps[currentY][currentX-1]==currentStep-1) {
+                currentX--;
+                currentStep--;
+                continue;
+            }
+            if (currentX<maze[0].length && mazeWithAllSteps[currentY][currentX+1]==currentStep-1) {
+                currentX++;
+                currentStep--;
+                continue;
+            }
+            if (currentX<maze.length && mazeWithAllSteps[currentY+1][currentX]==currentStep-1) {
+                currentY++;
+                currentStep--;
+                continue;
+            }
+        }
+        return mazeWithOnlyExitWay;
     }
 
     private void getMazeStartAndEndPoints(String mazeStatus) {
@@ -60,7 +93,7 @@ public class Maze {
             do {
                 mazeEndX = getRandom(maze[0].length);
                 mazeEndY = getRandom(maze.length);
-            } while (maze[mazeEndY][mazeStartX] == 0);
+            } while (maze[mazeEndY][mazeEndX] == 0 && (mazeStartX!=mazeEndX || mazeStartY!=mazeEndY));
         }
     }
 
