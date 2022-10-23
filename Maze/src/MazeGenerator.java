@@ -20,7 +20,20 @@ public class MazeGenerator {
             filInTheLastColumn(maze);
         if (maze[0].length % 2 == 0)
             filInTheLastLine(maze);
+        DestructionOfSomeWalls();
         return maze;
+    }
+
+    private void DestructionOfSomeWalls() {
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[0].length; j++) {
+                if (maze[i][j] == 0) {
+                    int random = (int)(Math.random() * 10);
+                    if (random>6)
+                        maze[i][j] =1;
+                }
+            }
+        }
     }
 
     private void filInTheLastLine(int[][] maze) {
