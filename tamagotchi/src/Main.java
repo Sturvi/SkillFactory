@@ -26,7 +26,6 @@ public class Main {
                     break;
             }
         }
-        cat.maimMenu();
         System.out.println("Надеюсь скоро вы вернетесь в игру");
     }
 }

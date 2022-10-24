@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Cat {
@@ -226,6 +227,7 @@ public class Cat {
     public void resumeGame() throws IOException, InterruptedException {
         File file = new File("save.txt");
         Scanner scanner = new Scanner(file);
+        scanner.useLocale(Locale.ENGLISH);
         name=scanner.next();
         age=scanner.nextInt();
         ageTimer=scanner.nextInt();
