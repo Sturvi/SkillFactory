@@ -12,9 +12,10 @@ public class Cat {
 
 
     Scanner scanner = new Scanner(System.in);
-    Print print = new Print;
+    Print print = new Print();
 
-    public void catMenu() throws IOException {
+    public void catMenu() throws IOException, InterruptedException {
+        print.clearConsole();
         ageTimer++;
         if (ageTimer == 20) {
             age++;
@@ -24,7 +25,7 @@ public class Cat {
         satiety -= (int) (Math.random() * 10) + 6;
         desireToPlay -= (int) (Math.random() * 25) + 6;
         if (desireToPlay < 0) desireToPlay = 0;
-        print.printMenyu();
+        print.mainMenu();
         char menuSelection = scanner.next().charAt(0);
         while (!test) {
             switch (menuSelection) {
@@ -47,48 +48,58 @@ public class Cat {
                     test = true;
                     break;
                 default:
-                    System.out.println("Вы ввели неправильную команду. Попробуйте снова.");
+                    System.out.println(print.error);
                     break;
             }
         }
     }
 
-    private void playingWithCat() throws IOException {
+    private void playingWithCat() throws IOException, InterruptedException {
+        print.clearConsole();
         while (!test) {
-            System.out.println("Желание играть: " + desireToPlay);
-            System.out.println("Сытость: " + satiety);
+            System.out.println(print.desireToPlay + desireToPlay);
+            System.out.println(print.satiety + satiety);
             if (satiety < 25) {
-                System.out.println("Ваш кот слишком голоден для игры. СРОЧНО ПОКОРМИТЕ ВАШЕГО КОТА");
-                feedingTheCat();
+                while (!test) {
+                    System.out.println(print.hungryToPlay);
+                    System.out.println(print.returnMainMenu + "(1)");
+                    System.out.println(print.feedingTheCat + "(2)");
+                    char menuSelection = scanner.next().charAt(0);
+                    switch (menuSelection) {
+                        case ('1'):
+                            catMenu();
+                            break;
+                        case ('2'):
+                            feedingTheCat();
+                            break;
+                        default:
+                            System.out.println(print.error);
+                            break;
+                    }
+                }
             } else if (satiety > 80) {
-                System.out.println("Ваш кот слишком сыт для игр. Попробуйте поиграть с ним позже");
-                System.out.println("Для возвращения в главное меню нажмите (1)");
+                System.out.println(print.fullToPlay);
+                System.out.println(print.returnMainMenu + "(1)");
                 while (!test) {
                     char menuSelection = scanner.next().charAt(0);
                     if (menuSelection == '1') {
                         catMenu();
                     } else {
-                        System.out.println("Неправильная команда. Попробуйте снова");
+                        System.out.println(print.error);
                     }
                 }
             } else if (desireToPlay == 100) {
-                System.out.println("Кот уже наигрался и больше не хочет играть");
+                System.out.println(print.playedEnough);
                 while (!test) {
                     char menuSelection = scanner.next().charAt(0);
                     if (menuSelection == '1') {
                         catMenu();
                     } else {
-                        System.out.println("Неправильная команда. Попробуйте снова");
+                        System.out.println(print.error);
                     }
                 }
             } else {
-                System.out.println("Вернуться в главное меню (1)");
-                System.out.println("Выход из программы (S) /t (ВНИМАНИЕ! ВАШ ПИТОМЕЦ ИСЧЕЗНЕТ И ВЫ БОЛЬШЕ НИКОГДА НЕ СМОЖЕТЕ ЕГО НАЙТИ)");
-                System.out.println("Выберите как поиграть с котом:");
-                System.out.println("Погладить кота (+20 к счастью кота) (2)");
-                System.out.println("Поиграть с лазерной указкой (+40 к счастью кота, -100 гр веса) (3)");
-                System.out.println("Дать коту 100$ (+100 к счастью кота) (4)");
-                System.out.println("Пнуть кота (-50 к счастью кота) (5)");
+                print.playingWithCatMenu();
                 char menuSelection = scanner.next().charAt(0);
                 switch (menuSelection) {
                     case ('1'):
@@ -107,33 +118,20 @@ public class Cat {
                     case ('5'):
                         desireToPlay = desireToPlay - 50 < 0 ? 0 : satiety - 50;
                         break;
-                    case ('S'):
-                        test = true;
-                        return;
-                    case ('s'):
-                        test = true;
-                        return;
                     default:
-                        System.out.println("Вы ввели неправильную команду. Попробуйте снова.");
+                        System.out.println(print.error);
                         break;
                 }
             }
         }
     }
 
-    private void feedingTheCat() throws IOException {
+    private void feedingTheCat() throws IOException, InterruptedException {
+        print.clearConsole();
         while (!test) {
-            System.out.println("Сытость: " + satiety);
-            if (satiety <= 20) System.out.println("СРОЧНО ПОКОРМИТЕ КОТА");
-            System.out.println("Вернуться в главное меню (1)");
-            System.out.println("Выход из программы (S) /t (ВНИМАНИЕ! ВАШ ПИТОМЕЦ ИСЧЕЗНЕТ И ВЫ БОЛЬШЕ НИКОГДА НЕ СМОЖЕТЕ ЕГО НАЙТИ)");
-            System.out.println("Выберите чем хотите покормить кота:");
-            System.out.println("Сухой корм (+30 сытости и +100 гр. веса) (2) ");
-            System.out.println("Жидкий корм WHISKAS (+40 сытости и +120 гр. веса) (3)");
-            System.out.println("Лосось (+50 сытости и +250 гр. веса) (4)");
-            System.out.println("Протеин (+20 сытости и +500 гр. веса) (5)");
-            System.out.println("Диетический корм (+20 сытости и -50 гр. веса) (6)");
-            System.out.println("Купюра в 100$ (+100 сытости ) (7)");
+            System.out.println(print.satiety + satiety);
+            if (satiety <= 20) System.out.println(print.satietyDanger);
+            print.feedingMenu();
             char menuSelection = scanner.next().charAt(0);
             if (menuSelection != '1' && menuSelection != 'S' && menuSelection != 's' && satiety > 50) {
                 System.out.println("Ваш кот не хочет сейчас есть!");
@@ -165,35 +163,25 @@ public class Cat {
                     case ('7'):
                         satiety = 100;
                         break;
-                    case ('S'):
-                        test = true;
-                        return;
-                    case ('s'):
-                        test = true;
-                        return;
                     default:
-                        System.out.println("Вы ввели неправильную команду. Попробуйте снова.");
+                        System.out.println(print.error);
                         break;
                 }
             }
         }
     }
 
-    private void catsCondition() throws IOException {
-        System.out.println("Состояние кота");
-        System.out.println("Имя: " + name);
-        System.out.println("Возраст: " + age);
-        System.out.println("Вес: " + weight);
-        System.out.println("Сытость: " + satiety);
-        if (satiety <= 20) System.out.println("СРОЧНО ПОКОРМИТЕ КОТА");
-        System.out.println("Желание играть: " + desireToPlay);
-        if (desireToPlay <= 20) System.out.println("ВАМ СЛЕДУЕТ ПОИГРАТЬ С КОТОМ! ЕМУ ОЧЕНЬ СКУЧНО");
-        System.out.println("");
-        System.out.println("Выберите действие которое хотите совершить:");
-        System.out.println("Вернуться в главное меню (1)");
-        System.out.println("Кормление кота (2)");
-        System.out.println("Игры с котом (3)");
-        System.out.println("Выход из программы (S) /t (ВНИМАНИЕ! ВАШ ПИТОМЕЦ ИСЧЕЗНЕТ И ВЫ БОЛЬШЕ НИКОГДА НЕ СМОЖЕТЕ ЕГО НАЙТИ)");
+    private void catsCondition() throws IOException, InterruptedException {
+        print.clearConsole();
+        System.out.println(print.catsCondition);
+        System.out.println(print.name + name);
+        System.out.println(print.age + age);
+        System.out.println(print.weight + weight);
+        System.out.println(print.satiety + satiety);
+        if (satiety <= 20) System.out.println(print.satietyDanger);
+        System.out.println(print.desireToPlay + desireToPlay);
+        if (desireToPlay <= 20) System.out.println(print.desireToPlayDanger);
+        print.conditionMenu();
         char menuSelection = scanner.next().charAt(0);
         while (!test) {
             switch (menuSelection) {
@@ -206,14 +194,8 @@ public class Cat {
                 case ('3'):
                     playingWithCat();
                     break;
-                case ('S'):
-                    test = true;
-                    return;
-                case ('s'):
-                    test = true;
-                    return;
                 default:
-                    System.out.println("Вы ввели неправильную команду. Попробуйте снова.");
+                    System.out.println(print.error);
                     break;
             }
         }
@@ -228,10 +210,12 @@ public class Cat {
         desireToPlay = (int) (Math.random() * 30) + 41;
     }
 
-    private void saveTheGame() throws IOException {
+    private void saveTheGame() throws IOException, InterruptedException {
         String saveData = name + " " + age + " " + ageTimer + " " + weight + " " + satiety + " " + desireToPlay;
         Save save = new Save();
         save.save(saveData);
+        System.out.println("Ваш прогресс успешно сохранен");
+        Thread.sleep(2000);
         catMenu();
     }
 }

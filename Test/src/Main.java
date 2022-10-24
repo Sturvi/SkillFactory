@@ -2,18 +2,30 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String[] parts = new String[5];
-        imputData(parts);
-        for (int i = 0; i < parts.length; i++) {
-            System.out.println(parts[i]);
+        System.out.println("ffff");
+        clearConsole();
+        System.out.println("GGG");
+    }
+
+    public final static void clearConsole()
+    {
+        try
+        {
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows"))
+            {
+                Runtime.getRuntime().exec("cls");
+            }
+            else
+            {
+                Runtime.getRuntime().exec("clear");
+            }
+        }
+        catch (final Exception e)
+        {
+            //  Handle any exceptions.
         }
     }
 
-    public static void imputData(String[] parts) {
-        String input = "H6-J4";
-        parts = input.split("");
-        for (int i = 0; i < parts.length; i++) {
-            System.out.println(parts[i]);
-        }
-    }
 }

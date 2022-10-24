@@ -5,6 +5,6 @@ public class Main {
         Cat cat = new Cat();
         cat.creatingANewPet();
         cat.catMenu();
-        System.out.println("К сожалению ваш питомец убежал!");
+        System.out.println("Надеюсь скоро вы вернетесь в игру");
     }
 }
