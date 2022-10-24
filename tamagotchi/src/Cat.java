@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Cat {
@@ -11,8 +12,9 @@ public class Cat {
 
 
     Scanner scanner = new Scanner(System.in);
+    Print print = new Print;
 
-    public void catMenu() {
+    public void catMenu() throws IOException {
         ageTimer++;
         if (ageTimer == 20) {
             age++;
@@ -22,11 +24,7 @@ public class Cat {
         satiety -= (int) (Math.random() * 10) + 6;
         desireToPlay -= (int) (Math.random() * 25) + 6;
         if (desireToPlay < 0) desireToPlay = 0;
-        System.out.println("Выберите меню:");
-        System.out.println("Состояние кота (1)");
-        System.out.println("Кормление кота (2)");
-        System.out.println("Игры с котом (3)");
-        System.out.println("Выход из программы (S) /t (ВНИМАНИЕ! ВАШ ПИТОМЕЦ ИСЧЕЗНЕТ И ВЫ БОЛЬШЕ НИКОГДА НЕ СМОЖЕТЕ ЕГО НАЙТИ)");
+        print.printMenyu();
         char menuSelection = scanner.next().charAt(0);
         while (!test) {
             switch (menuSelection) {
@@ -38,6 +36,9 @@ public class Cat {
                     break;
                 case ('3'):
                     playingWithCat();
+                    break;
+                case ('4'):
+                    saveTheGame();
                     break;
                 case ('S'):
                     test = true;
@@ -52,7 +53,7 @@ public class Cat {
         }
     }
 
-    private void playingWithCat() {
+    private void playingWithCat() throws IOException {
         while (!test) {
             System.out.println("Желание играть: " + desireToPlay);
             System.out.println("Сытость: " + satiety);
@@ -120,7 +121,7 @@ public class Cat {
         }
     }
 
-    private void feedingTheCat() {
+    private void feedingTheCat() throws IOException {
         while (!test) {
             System.out.println("Сытость: " + satiety);
             if (satiety <= 20) System.out.println("СРОЧНО ПОКОРМИТЕ КОТА");
@@ -178,7 +179,7 @@ public class Cat {
         }
     }
 
-    private void catsCondition() {
+    private void catsCondition() throws IOException {
         System.out.println("Состояние кота");
         System.out.println("Имя: " + name);
         System.out.println("Возраст: " + age);
@@ -225,5 +226,12 @@ public class Cat {
         weight = 3;
         satiety = (int) (Math.random() * 30) + 41;
         desireToPlay = (int) (Math.random() * 30) + 41;
+    }
+
+    private void saveTheGame() throws IOException {
+        String saveData = name + " " + age + " " + ageTimer + " " + weight + " " + satiety + " " + desireToPlay;
+        Save save = new Save();
+        save.save(saveData);
+        catMenu();
     }
 }
