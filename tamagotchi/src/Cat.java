@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -14,7 +16,7 @@ public class Cat {
     Scanner scanner = new Scanner(System.in);
     Print print = new Print();
 
-    public void catMenu() throws IOException, InterruptedException {
+    public void maimMenu() throws IOException, InterruptedException {
         print.clearConsole();
         ageTimer++;
         if (ageTimer == 20) {
@@ -55,8 +57,8 @@ public class Cat {
     }
 
     private void playingWithCat() throws IOException, InterruptedException {
-        print.clearConsole();
         while (!test) {
+            print.clearConsole();
             System.out.println(print.desireToPlay + desireToPlay);
             System.out.println(print.satiety + satiety);
             if (satiety < 25) {
@@ -67,7 +69,7 @@ public class Cat {
                     char menuSelection = scanner.next().charAt(0);
                     switch (menuSelection) {
                         case ('1'):
-                            catMenu();
+                            maimMenu();
                             break;
                         case ('2'):
                             feedingTheCat();
@@ -83,7 +85,7 @@ public class Cat {
                 while (!test) {
                     char menuSelection = scanner.next().charAt(0);
                     if (menuSelection == '1') {
-                        catMenu();
+                        maimMenu();
                     } else {
                         System.out.println(print.error);
                     }
@@ -93,7 +95,7 @@ public class Cat {
                 while (!test) {
                     char menuSelection = scanner.next().charAt(0);
                     if (menuSelection == '1') {
-                        catMenu();
+                        maimMenu();
                     } else {
                         System.out.println(print.error);
                     }
@@ -103,10 +105,10 @@ public class Cat {
                 char menuSelection = scanner.next().charAt(0);
                 switch (menuSelection) {
                     case ('1'):
-                        catMenu();
+                        maimMenu();
                         break;
                     case ('2'):
-                        desireToPlay = desireToPlay + 20 > 100 ? 100 : desireToPlay + 30;
+                        desireToPlay = desireToPlay + 20 > 100 ? 100 : desireToPlay + 20;
                         break;
                     case ('3'):
                         desireToPlay = desireToPlay + 40 > 100 ? 100 : desireToPlay + 40;
@@ -138,7 +140,7 @@ public class Cat {
             } else {
                 switch (menuSelection) {
                     case ('1'):
-                        catMenu();
+                        maimMenu();
                         break;
                     case ('2'):
                         satiety = satiety + 30 > 100 ? 100 : satiety + 30;
@@ -186,7 +188,7 @@ public class Cat {
         while (!test) {
             switch (menuSelection) {
                 case ('1'):
-                    catMenu();
+                    maimMenu();
                     break;
                 case ('2'):
                     feedingTheCat();
@@ -201,13 +203,15 @@ public class Cat {
         }
     }
 
-    public void creatingANewPet() {
+    public void creatingANewPet() throws IOException, InterruptedException {
         System.out.print("Пожалуйста введите имя вашего питомца: ");
         name = scanner.nextLine();
         age = 0;
         weight = 3;
         satiety = (int) (Math.random() * 30) + 41;
         desireToPlay = (int) (Math.random() * 30) + 41;
+        Thread.sleep(2000);
+        maimMenu();
     }
 
     private void saveTheGame() throws IOException, InterruptedException {
@@ -216,6 +220,19 @@ public class Cat {
         save.save(saveData);
         System.out.println("Ваш прогресс успешно сохранен");
         Thread.sleep(2000);
-        catMenu();
+        maimMenu();
+    }
+
+    public void resumeGame() throws IOException, InterruptedException {
+        File file = new File("save.txt");
+        Scanner scanner = new Scanner(file);
+        name=scanner.next();
+        age=scanner.nextInt();
+        ageTimer=scanner.nextInt();
+        weight=scanner.nextDouble();
+        satiety=scanner.nextInt();
+        desireToPlay= scanner.nextInt();
+        Thread.sleep(2000);
+        maimMenu();
     }
 }
