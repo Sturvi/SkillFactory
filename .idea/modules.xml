@@ -5,9 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/Calc/Calc.iml" filepath="$PROJECT_DIR$/Calc/Calc.iml" />
       <module fileurl="file://$PROJECT_DIR$/Cheese/Cheese.iml" filepath="$PROJECT_DIR$/Cheese/Cheese.iml" />
       <module fileurl="file://$PROJECT_DIR$/Maze/Maze.iml" filepath="$PROJECT_DIR$/Maze/Maze.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Practical week 10.27/Practical week 10.27.iml" filepath="$PROJECT_DIR$/Practical week 10.27/Practical week 10.27.iml" />
       <module fileurl="file://$PROJECT_DIR$/Rocket Timer/Rocket Timer.iml" filepath="$PROJECT_DIR$/Rocket Timer/Rocket Timer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SkillFactory.iml" filepath="$PROJECT_DIR$/.idea/SkillFactory.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Test/Test.iml" filepath="$PROJECT_DIR$/Test/Test.iml" />
       <module fileurl="file://$PROJECT_DIR$/tamagotchi/tamagotchi.iml" filepath="$PROJECT_DIR$/tamagotchi/tamagotchi.iml" />
     </modules>
   </component>
