@@ -1,10 +1,15 @@
 public class Main {
     // write your code here
     public static void main(String[] args) {
-        Mage mage = new Mage("Emin", 10, 100, "ice");
-        Mage mage1 = new Mage("Eldar", 10, 100, "ice");
-        String salam =  mage.fight(mage1);
-        System.out.println(salam);
-
+        TicTacToe ticTacToe = new TicTacToe();
+        System.out.println(ticTacToe.makeMove(1, 1));
+        System.out.println(ticTacToe.makeMove(1, 1));
+        System.out.println(ticTacToe.makeMove(1, 2));
+        System.out.println(ticTacToe.makeMove(2, 1));
+        System.out.println(ticTacToe.makeMove(2, 2));
+        System.out.println(ticTacToe.makeMove(1, 3));
+        System.out.println(ticTacToe.makeMove(3, 2));
+ticTacToe.newGame();
+        System.out.println(ticTacToe.makeMove(1, 1));
     }
 }
