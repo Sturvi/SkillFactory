@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Scanner;
@@ -17,7 +16,7 @@ public class Cat {
     Scanner scanner = new Scanner(System.in);
     Print print = new Print();
 
-    public void maimMenu() throws IOException, InterruptedException {
+    public void mainMenu() throws IOException, InterruptedException {
         print.clearConsole();
         ageTimer++;
         if (ageTimer == 20) {
@@ -70,7 +69,7 @@ public class Cat {
                     char menuSelection = scanner.next().charAt(0);
                     switch (menuSelection) {
                         case ('1'):
-                            maimMenu();
+                            mainMenu();
                             break;
                         case ('2'):
                             feedingTheCat();
@@ -86,7 +85,7 @@ public class Cat {
                 while (!test) {
                     char menuSelection = scanner.next().charAt(0);
                     if (menuSelection == '1') {
-                        maimMenu();
+                        mainMenu();
                     } else {
                         System.out.println(print.error);
                     }
@@ -96,7 +95,7 @@ public class Cat {
                 while (!test) {
                     char menuSelection = scanner.next().charAt(0);
                     if (menuSelection == '1') {
-                        maimMenu();
+                        mainMenu();
                     } else {
                         System.out.println(print.error);
                     }
@@ -106,7 +105,7 @@ public class Cat {
                 char menuSelection = scanner.next().charAt(0);
                 switch (menuSelection) {
                     case ('1'):
-                        maimMenu();
+                        mainMenu();
                         break;
                     case ('2'):
                         desireToPlay = desireToPlay + 20 > 100 ? 100 : desireToPlay + 20;
@@ -141,7 +140,7 @@ public class Cat {
             } else {
                 switch (menuSelection) {
                     case ('1'):
-                        maimMenu();
+                        mainMenu();
                         break;
                     case ('2'):
                         satiety = satiety + 30 > 100 ? 100 : satiety + 30;
@@ -189,7 +188,7 @@ public class Cat {
         while (!test) {
             switch (menuSelection) {
                 case ('1'):
-                    maimMenu();
+                    mainMenu();
                     break;
                 case ('2'):
                     feedingTheCat();
@@ -212,7 +211,7 @@ public class Cat {
         satiety = (int) (Math.random() * 30) + 41;
         desireToPlay = (int) (Math.random() * 30) + 41;
         Thread.sleep(2000);
-        maimMenu();
+        mainMenu();
     }
 
     private void saveTheGame() throws IOException, InterruptedException {
@@ -221,7 +220,7 @@ public class Cat {
         save.save(saveData);
         System.out.println("Ваш прогресс успешно сохранен");
         Thread.sleep(2000);
-        maimMenu();
+        mainMenu();
     }
 
     public void resumeGame() throws IOException, InterruptedException {
@@ -235,6 +234,6 @@ public class Cat {
         satiety=scanner.nextInt();
         desireToPlay= scanner.nextInt();
         Thread.sleep(2000);
-        maimMenu();
+        mainMenu();
     }
 }
