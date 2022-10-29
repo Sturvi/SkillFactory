@@ -1,6 +1,7 @@
 public class Main {
     // write your code here
     public static void main(String[] args) {
+<<<<<<< Updated upstream
         SeaBoard board = new SeaBoard();
         board.shoot(0, 0, "m");
         board.shoot(2, 0, "h");
@@ -13,5 +14,12 @@ public class Main {
             }
             System.out.println();
         }
+=======
+        Squirrel squirrel = new Squirrel(new int[] {1, -2, 3, 1, -1, -4, -10, 3, 4});
+        System.out.println((squirrel.maxNuts()));
+
+        var dog = new Dog();
+
+>>>>>>> Stashed changes
     }
 }
