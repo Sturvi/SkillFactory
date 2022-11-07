@@ -31,21 +31,21 @@ public class MazeExitWay {
         if (!exitFound &&
                 currentY>0 &&
                 maze[currentY-1][currentX]==1 &&
-                (maze2[currentY-1][currentX]==0 || maze2[currentY-1][currentX]>maze2[currentY][currentX])){
+                maze2[currentY-1][currentX]==0){
             stepCounter=maze2[currentY][currentX]+1;
             takeTheNextStep(maze2,currentX,currentY-1,stepCounter);
         }
         if (!exitFound &&
                 currentX<maze[0].length-1 &&
                 maze[currentY][currentX+1]==1 &&
-                (maze2[currentY][currentX+1]==0 || maze2[currentY][currentX+1]>maze2[currentY][currentX])){
+                maze2[currentY][currentX+1]==0){
             stepCounter=maze2[currentY][currentX]+1;
             takeTheNextStep(maze2,currentX+1,currentY,stepCounter);
         }
         if (!exitFound &&
                 currentY<maze.length-1 &&
                 maze[currentY+1][currentX]==1 &&
-                (maze2[currentY+1][currentX]==0 || maze2[currentY+1][currentX]>maze2[currentY][currentX])){
+                maze2[currentY+1][currentX]==0){
             stepCounter=maze2[currentY][currentX]+1;
 
             takeTheNextStep(maze2,currentX,currentY+1,stepCounter);
@@ -53,7 +53,7 @@ public class MazeExitWay {
         if (!exitFound &&
                 currentX>0 &&
                 maze[currentY][currentX-1]==1 &&
-                (maze2[currentY][currentX-1]==0 || maze2[currentY][currentX-1]>maze2[currentY][currentX])){
+                maze2[currentY][currentX-1]==0){
             stepCounter=maze2[currentY][currentX]+1;
             takeTheNextStep(maze2,currentX-1,currentY,stepCounter);
         }

@@ -12,7 +12,6 @@ public class Main {
         int[][] mazeWithAllSteps = new int[maze.maze.length][maze.maze[0].length];
         mazeWithAllSteps = maze.findingAnExitFromMaze();
         printMazeExitWay (maze, onlyMazeExitWay, mazeWithAllSteps);
-
     }
 
     private static void printMazeExitWay(Maze maze, int[][] onlyMazeExitWay, int[][] mazeWithAllSteps) {
