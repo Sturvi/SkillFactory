@@ -20,11 +20,11 @@ public class MazeGenerator {
             filInTheLastColumn(maze);
         if (maze[0].length % 2 == 0)
             filInTheLastLine(maze);
-        DestructionOfSomeWalls();
+//        DestructionOfSomeWalls();
         return maze;
     }
 
-    private void DestructionOfSomeWalls() {
+/*    private void DestructionOfSomeWalls() {
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[0].length; j++) {
                 if (maze[i][j] == 0) {
@@ -34,7 +34,7 @@ public class MazeGenerator {
                 }
             }
         }
-    }
+    }*/
 
     private void filInTheLastLine(int[][] maze) {
         for (int i = 0; i < maze.length; i++) {
@@ -117,6 +117,3 @@ public class MazeGenerator {
             unvisitedNeighbors[3] = false;
     }
 }
-
-
-

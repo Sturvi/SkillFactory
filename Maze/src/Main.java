@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         Maze maze = new Maze();
-        maze.getMaze();
+        maze.inputMaze();
         //printmaze(maze.maze);
         int[][] onlyMazeExitWay = new int[maze.maze.length][maze.maze[0].length];
         onlyMazeExitWay = maze.onlyMazeExitWay();
@@ -48,8 +48,4 @@ public class Main {
         }
         System.out.println("");
     }
-
-
-
 }
-
