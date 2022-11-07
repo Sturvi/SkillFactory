@@ -8,7 +8,7 @@ public class Maze {
     public int mazeEndX;
     public int mazeEndY;
 
-    public void getMaze() {
+    public void inputMaze() {
         System.out.println("Хотите ли вы ввести лабиринт в ручную, или сгенирировать случайный лабиринт?");
         System.out.println("Введите Y если хотите ввести массив в ручную.");
         System.out.println("Введите N если хотите сгенерировать случайный лабиринт.");
@@ -19,11 +19,11 @@ public class Maze {
             System.out.println("Введите N если хотите сгенерировать случайный лабиринт.");
             mazeStatus = scanner.nextLine();
         }
-        int mazeX = getMazeWidth();
-        int mazeY = getMazeHeight();
+        int mazeX = mazeWidth();
+        int mazeY = mazeHeight();
         maze = new int[mazeY][mazeX];
         if (mazeStatus.equals("Y")) {
-            maze = getMazeFromKeyboard(mazeX, mazeY);
+            maze = mazeFromKeyboard(mazeX, mazeY);
             getMazeStartAndEndPoints(mazeStatus);
         } else {
             MazeGenerator mazeGenerator = new MazeGenerator(maze);
@@ -35,7 +35,7 @@ public class Maze {
     public int [][] findingAnExitFromMaze() {
         MazeExitWay mazeExitWay = new MazeExitWay(maze, mazeStartX, mazeStartY, mazeEndX, mazeEndY);
         int[][] mazeExit = new int[maze.length][maze[0].length];
-        mazeExit = mazeExitWay.getMazeExitWay();
+        mazeExit = mazeExitWay.mazeExitWay();
         return mazeExit;
     }
 
@@ -87,21 +87,21 @@ public class Maze {
             mazeEndY = scanner.nextInt() - 1;
         } else {
             do {
-                mazeStartX = getRandom(maze[0].length);
-                mazeStartY = getRandom(maze.length);
+                mazeStartX = random(maze[0].length);
+                mazeStartY = random(maze.length);
             } while (maze[mazeStartY][mazeStartX] == 0);
             do {
-                mazeEndX = getRandom(maze[0].length);
-                mazeEndY = getRandom(maze.length);
+                mazeEndX = random(maze[0].length);
+                mazeEndY = random(maze.length);
             } while (maze[mazeEndY][mazeEndX] == 0 && (mazeStartX!=mazeEndX || mazeStartY!=mazeEndY));
         }
     }
 
-    private int getRandom(int maxRandom) {
+    private int random(int maxRandom) {
         return (int) (Math.random() * maxRandom);
     }
 
-    private static int[][] getMazeFromKeyboard(int mazeWidth, int mazeHeight) {
+    private static int[][] mazeFromKeyboard(int mazeWidth, int mazeHeight) {
         int[][] maze = new int[mazeHeight][mazeWidth];
         System.out.println("Введите лабиринт (0 - стена, 1 - тунель):");
         for (int i = 0; i < mazeWidth; i++) {
@@ -112,13 +112,13 @@ public class Maze {
         return maze;
     }
 
-    private static int getMazeWidth() {
+    private static int mazeWidth() {
         System.out.println("Введите ширину лабиринта:");
         int mazeWidth = scanner.nextInt();
         return mazeWidth;
     }
 
-    private static int getMazeHeight() {
+    private static int mazeHeight() {
         System.out.println("Введите высоту лабиринта:");
         int mazeHeight = scanner.nextInt();
         return mazeHeight;
