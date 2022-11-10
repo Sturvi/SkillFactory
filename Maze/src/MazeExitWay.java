@@ -4,7 +4,7 @@ public class MazeExitWay {
     private int mazeStartY;
     private int mazeEndX;
     private int mazeEndY;
-    private boolean exitFound=false;
+    public static int totalstep = 0;
 
 
     public MazeExitWay(int[][] maze, int mazeStartX, int mazeStartY, int mazeEndX, int mazeEndY) {
@@ -25,33 +25,28 @@ public class MazeExitWay {
     }
 
     private void takeTheNextStep(int[][] maze2, int currentX, int currentY, int stepCounter) {
+        totalstep++;
         maze2[currentY][currentX]=stepCounter;
         stepCounter++;
-        exitFound =maze2[mazeEndY][mazeEndX]>1?true:false;
-        if (!exitFound &&
-                currentY>0 &&
+        if (maze2[mazeEndY][mazeEndX]==0 &&                currentY>0 &&
                 maze[currentY-1][currentX]==1 &&
                 maze2[currentY-1][currentX]==0){
             stepCounter=maze2[currentY][currentX]+1;
             takeTheNextStep(maze2,currentX,currentY-1,stepCounter);
         }
-        if (!exitFound &&
-                currentX<maze[0].length-1 &&
+        if (maze2[mazeEndY][mazeEndX]==0 &&                currentX<maze[0].length-1 &&
                 maze[currentY][currentX+1]==1 &&
                 maze2[currentY][currentX+1]==0){
             stepCounter=maze2[currentY][currentX]+1;
             takeTheNextStep(maze2,currentX+1,currentY,stepCounter);
         }
-        if (!exitFound &&
-                currentY<maze.length-1 &&
+        if (maze2[mazeEndY][mazeEndX]==0 &&                currentY<maze.length-1 &&
                 maze[currentY+1][currentX]==1 &&
                 maze2[currentY+1][currentX]==0){
             stepCounter=maze2[currentY][currentX]+1;
-
             takeTheNextStep(maze2,currentX,currentY+1,stepCounter);
         }
-        if (!exitFound &&
-                currentX>0 &&
+        if (maze2[mazeEndY][mazeEndX]==0 &&                currentX>0 &&
                 maze[currentY][currentX-1]==1 &&
                 maze2[currentY][currentX-1]==0){
             stepCounter=maze2[currentY][currentX]+1;

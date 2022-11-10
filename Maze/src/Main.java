@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         Maze maze = new Maze();
         maze.inputMaze();
-        //printmaze(maze.maze);
+        printmaze(maze.maze);
         int[][] onlyMazeExitWay = new int[maze.maze.length][maze.maze[0].length];
         onlyMazeExitWay = maze.onlyMazeExitWay();
         int[][] mazeWithAllSteps = new int[maze.maze.length][maze.maze[0].length];
@@ -34,6 +34,8 @@ public class Main {
             }
             System.out.println("");
         }
+        System.out.println(MazeExitWay.totalstep);
+
     }
 
     private static void printmaze(int[][] maze) {

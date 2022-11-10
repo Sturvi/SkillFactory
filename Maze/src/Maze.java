@@ -57,12 +57,12 @@ public class Maze {
                 currentStep--;
                 continue;
             }
-            if (currentX<maze[0].length && mazeWithAllSteps[currentY][currentX+1]==currentStep-1) {
+            if (currentX<maze[0].length-1 && mazeWithAllSteps[currentY][currentX+1]==currentStep-1) {
                 currentX++;
                 currentStep--;
                 continue;
             }
-            if (currentX<maze.length && mazeWithAllSteps[currentY+1][currentX]==currentStep-1) {
+            if (currentY<maze.length-1 && mazeWithAllSteps[currentY+1][currentX]==currentStep-1) {
                 currentY++;
                 currentStep--;
                 continue;
