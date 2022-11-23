@@ -11,6 +11,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/SkillFactory.iml" filepath="$PROJECT_DIR$/.idea/SkillFactory.iml" />
       <module fileurl="file://$PROJECT_DIR$/Test/Test.iml" filepath="$PROJECT_DIR$/Test/Test.iml" />
       <module fileurl="file://$PROJECT_DIR$/Test1/Test1.iml" filepath="$PROJECT_DIR$/Test1/Test1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Z7.1.1/Z7.1.1.iml" filepath="$PROJECT_DIR$/Z7.1.1/Z7.1.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Z7.2.2/Z7.2.2.iml" filepath="$PROJECT_DIR$/Z7.2.2/Z7.2.2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Z7.3.2/Z7.3.2.iml" filepath="$PROJECT_DIR$/Z7.3.2/Z7.3.2.iml" />
       <module fileurl="file://$PROJECT_DIR$/tamagotchi/tamagotchi.iml" filepath="$PROJECT_DIR$/tamagotchi/tamagotchi.iml" />
     </modules>
   </component>
