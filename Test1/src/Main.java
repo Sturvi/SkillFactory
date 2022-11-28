@@ -1,12 +1,22 @@
+
+
 public class Main {
     public static void main(String[] args) {
-        NewLife newLife = new NewLife();
-        Life.setLife(newLife.lifeEditor(Life.getLife(), "Negotive"));
+        Human Aydan = new Human ("Aydan", 23, "Graphic Designer", true);
     }
 }
 
-class NewLife {
-    public String lifeEditor(String life, String regex) {
-        return life.replaceAll(regex, "");
+class Human {
+    String name;
+    int age;
+    String profession;
+    final boolean single;
+
+    public Human(String name, int age, String profession, boolean single) {
+        this.name = name;
+        this.age = age;
+        this.profession = profession;
+        this.single = single;
     }
 }
+
